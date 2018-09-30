@@ -220,4 +220,71 @@ let populate = function() {
 
 }
 
-window.onload = populate();
+//window.onload = populate();
+
+$(".dropdown-menu li").click(function(){
+    var selText = $(this).text();
+    //console.log(selText);
+    //$(this).parents('.btn-group').find('.dropdown-toggle').html(selText+' <span class="caret"></span>');
+    console.log($(this).closest('ul').attr('id'));
+    switch($(this).closest('ul').attr('id'))
+    {
+        case "t1":  $("#team-1").text(selText);
+                    $("#team-1").val(selText);
+                    break;
+
+        case "t2":  $("#team-2").text(selText);
+                    $("#team-2").val(selText);
+                    break;
+
+        case "it1": $("#innings").text(selText);
+                    $("#innings").val(selText);
+                    break;
+
+        case "vt1": $("#venue").text(selText);
+                    $("#venue").val(selText);
+                    break;
+
+        case "grd": $("#groundid").text(selText);
+                    $("#groundid").val(selText);
+                    break;
+
+        case "ch":  $("#choice").text(selText);
+                    $("#choice").val(selText);
+                    break;
+
+        default: break;
+    }
+  });
+
+  $('submitdBtn').click(function() {
+    var jdata = {}
+    jdata["team1"] = $("#team-1").val();
+    jdata["team2"] = $("#team-2").val();
+    jdata["innings_t1"] = $("#innings").val();
+    jdata["venue_t1"] = $("#venue").val();
+    jdata["ground"] = $("#groundid").val();
+    jdata["choice"] = $("#choice").val();
+
+    console.log(jdata);
+
+    $.post( "/", jdata).done(function( data ) {
+        alert( "Data Loaded: " + data );
+      });
+});
+
+function myfunction() {
+    var jdata = {}
+    jdata["team1"] = $("#team-1").val();
+    jdata["team2"] = $("#team-2").val();
+    jdata["innings_t1"] = $("#innings").val();
+    jdata["venue_t1"] = $("#venue").val();
+    jdata["ground"] = $("#groundid").val();
+    jdata["choice"] = $("#choice").val();
+
+    console.log(jdata);
+
+    $.post( "/", jdata).done(function( data ) {
+        alert( "Data Loaded: " + data );
+      });
+}

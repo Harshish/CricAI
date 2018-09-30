@@ -54,59 +54,71 @@
 
                   <h1 class="display-4 heading" align="center">CricAI: Smart Outcome Prediction System</h1>
 
-            <form method="post">
+            <form method="post" action="/">
                 <div class="row top-row">
                         <div class="col-md-4">
-                                <select id="team-1" name="team1" class="btn btn-outline-primary" required>
-                                        <option value="">Select Team 1</option>
-                                </select>
+                                <label id="team-1" name="team1" value="" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Select Team</label>
+                                <ul id="t1" class="dropdown-menu ul-fix">
+                                        {% for country in countries %}
+                                                <li class="dropdown-item" style="cursor:pointer;" value="{{ country }}">{{ country }}</li>
+                                        {% endfor %}
+                                </ul>
                         </div>
 
                         <div class="col-md-3">
-                                <select id="innings" name="innings_t1" class="btn btn-outline-primary" required>
-                                        <option value="">Select Innings(Team 1)</option>
-                                        <option value="1">First</option>
-                                        <option value="2">Second</option>
-                                </select>
+
+                                <label id="innings" name="innings_t1" value="" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Select Innings(Team 1)<span class="caret"></span></label>
+                                <ul id="it1" class="dropdown-menu">
+                                        <li class="dropdown-item" style="cursor:pointer;" value="First">First</li>
+                                        <li class="dropdown-item" style="cursor:pointer;" value="Second">Second</li>
+                                </ul>
+
                         </div>
 
                         <div class="col-md-2">
-                                <select id="venue" name="venue_t1" class="btn btn-outline-primary" required>
-                                        <option value="">Select Venue(Team 1)</option>
-                                        <option value="1">Home</option>
-                                        <option value="2">Away</option>
-                                        <option value="3">Neutral</option>
-                                </select>
+                                <label id="venue" name="venue_t1" value="" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Select Venue(Team 1)<span class="caret"></span></label>
+                                <ul id="vt1" class="dropdown-menu ul-fix">
+                                        <li class="dropdown-item" style="cursor:pointer;" value="Home" >Home</li>
+                                        <li class="dropdown-item" style="cursor:pointer;" value="Away" >Away</li>
+                                        <li class="dropdown-item" style="cursor:pointer;" value="Neutral">Neutral</li>
+                                </ul>
                         </div>
 
                         <div class="col-md-3">
-                                <select id="groundid" name="ground" class="btn btn-outline-primary" required>
-                                        <option value="">Select Ground</option>
-                                </select>
+                                
+                                <label id="groundid" name="ground" value="" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Select Ground<span class="caret"></span></label>
+                                <ul id="grd" class="dropdown-menu ul-fix">
+                                        {% for ground in groundNames %}
+                                                <li class="dropdown-item" style="cursor:pointer;" value="{{ ground }}">{{ ground }}</li>
+                                        {% endfor %}
+                                </ul>
                         </div>
 
                 </div>
 
                 <div class="row bottom-row">
                         <div class="col-md-4">
-                                <select id="team-2" name="team2" class="btn btn-outline-primary" required>
-                                        <option value="">Select Team 2</option> 
-                                </select>                      
+                                <label id="team-2" name="team2" value="" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Select Team 2<span class="caret"></span></label>
+                                <ul id="t2" class="dropdown-menu ul-fix">
+                                        {% for country in countries %}
+                                                <li class="dropdown-item" style="cursor:pointer;" value="{{ country }}">{{ country }}</li>
+                                        {% endfor %}
+                                </ul>
                         </div>
 
                         <div class="col-md-8">
-                                <select id="choice" name="choice" class="btn btn-outline-primary" required>
-                                        <option value="">Choose Classifier</option>
-                                        <option value="1"> SVM Classifier </option>
-                                        <option value="2"> DT Classifier </option>
-                                        <option value="3"> MLP Classifier </option>
-                                </select>  
+                                <label id="choice" name="choice" value="" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Choose Classifier<span class="caret"></span></label>
+                                <ul id="ch" class="dropdown-menu ul-fix">
+                                        <li class="dropdown-item" style="cursor:pointer;" value="1">SVM Classifier</li>
+                                        <li class="dropdown-item" style="cursor:pointer;" value="2">DT Classifier</li>
+                                        <li class="dropdown-item" style="cursor:pointer;" value="3">MLP Classifier</li>
+                                </ul>
                         </div>
                 </div>
                 
                 
                 <div class="col-md-12 submitButton" align='center'>
-                        <input type="submit" value="Run Model" class="btn btn-success">
+                        <button id="submitBtn" onclick='myfunction()' class="btn btn-success">Run Model</button>
                 </div>   
             </form>     
 </div>

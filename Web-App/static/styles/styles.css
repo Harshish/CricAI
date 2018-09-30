@@ -59,3 +59,11 @@
 .card-winner {
     width:300px;
 }
+
+.ul-fix {
+    position: fixed;
+    top: 0px;
+    width: 400px;
+    height: 400px; 
+    overflow: scroll;
+}

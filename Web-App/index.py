@@ -2,23 +2,25 @@ import sys, os
 from Classifier import ourMLPClassifier,ourDTClassifier,ourSVMClassifier
 import dataInputFormat
 from flask import Flask, render_template, request
+from util import countries, groundNames
 
 app = Flask(__name__)
 
 @app.route('/', methods = ["GET","POST"])
 def index():
 	if request.method == "POST":
-		team1 = request.form['team1']
-		team2 = request.form['team2']
-		innings_t1 = request.form['innings_t1']
-		venue_t1 = request.form['venue_t1']
-		ground= request.form['ground']
-		choice = request.form['choice']
+		print(request.args)
+		team1 = request.args['team1']
+		team2 = request.args['team2']
+		innings_t1 = request.arg['innings_t1']
+		venue_t1 = request.args['venue_t1']
+		ground= request.args['ground']
+		choice = request.args['choice']
 		
-		#print(team1, team2, innings_t1, venue_t1, ground, choice, file=sys.stderr)
-		return render_template('result.html',result = getResults(ground, int(innings_t1), int(venue_t1), team1, team2, int(choice)))
+		print(team1, team2, innings_t1, venue_t1, ground, choice, file=sys.stderr)
+		return render_template('result.html',countries=countries,groundNames=groundNames,result = getResults(ground, int(innings_t1), int(venue_t1), team1, team2, int(choice)))
 	else:
-		return render_template('index.html')
+		return render_template('index.html',countries=countries,groundNames=groundNames)
 
 @app.route('/result', methods = ["GET","POST"])
 def result():
